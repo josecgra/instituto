@@ -23,6 +23,10 @@ public class AlumnoService {
 		return this.repository.findAll();
 	}
 	
+	public List<Alumno> findAll18() {
+		return this.repository.findAll18();
+	}
+	
 	public boolean create(Alumno alu) {
 		return this.repository.create(alu);
 	}

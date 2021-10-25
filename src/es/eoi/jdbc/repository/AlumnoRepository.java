@@ -1,5 +1,6 @@
 package es.eoi.jdbc.repository;
 
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -63,6 +64,30 @@ public class AlumnoRepository {
 		try {
 			Statement st = con.createStatement();
 			ResultSet rs = st.executeQuery(sql);
+
+			while (rs.next()) {
+				alu = new Alumno(rs.getString("dni"), rs.getString("nombre"), rs.getString("apellidos"),
+						rs.getInt("edad"));
+				listaAlumnos.add(alu);
+			}
+
+		} catch (SQLException e) {
+			System.out.println("ERROR al recuperar todos los alumnos " + e.getMessage());
+		}
+
+		return listaAlumnos;
+	}
+	
+	public List<Alumno> findAll18() {
+
+		List<Alumno> listaAlumnos = new ArrayList<Alumno>();
+		Connection con = openConnection();
+		Alumno alu = null;
+		String sp = "call SP_ALUMNOS18()";
+
+		try {
+			CallableStatement cst = con.prepareCall(sp);
+			ResultSet rs = cst.executeQuery();
 
 			while (rs.next()) {
 				alu = new Alumno(rs.getString("dni"), rs.getString("nombre"), rs.getString("apellidos"),
@@ -157,5 +182,7 @@ public class AlumnoRepository {
 
 		return actualizado;
 	}
+	
+	
 
 }

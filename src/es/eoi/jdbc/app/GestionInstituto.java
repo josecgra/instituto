@@ -21,6 +21,7 @@ public class GestionInstituto {
 			System.out.println("3 –Crear Alumno");
 			System.out.println("4 –Modificar Alumno");
 			System.out.println("5 –Eliminar Alumno");
+			System.out.println("6 –Listado Alumnos +18");
 			System.out.println("0 –SALIR");
 			i = sc.nextInt();
 			sc.nextLine();
@@ -78,6 +79,11 @@ public class GestionInstituto {
 					else
 						System.out.println("Ha habido algun fallo borrando el Alumno");
 					
+					break;
+				case 6:
+					for (Alumno alu1 : servicio.findAll18()) {
+						System.out.println(alu1.toString());
+					}
 					break;
 			}
 			
