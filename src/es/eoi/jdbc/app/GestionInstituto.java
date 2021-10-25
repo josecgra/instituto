@@ -12,7 +12,12 @@ public class GestionInstituto {
 		Scanner sc = new Scanner(System.in);
 		int i = 0;
 		AlumnoService servicio = new AlumnoService();
+	
+		servicio.insertsTran();
 		
+		
+		
+		/*	
 		do {
 			System.out.println("GESTION INSTITUTO V1");
 			System.out.println("====================");
@@ -92,7 +97,7 @@ public class GestionInstituto {
 		} while (i != 0);
 		
 		System.out.println("LA APLICACION HA TERMINADO");
-		
+		*/
 		
 	}
 

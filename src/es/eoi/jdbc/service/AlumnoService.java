@@ -31,6 +31,10 @@ public class AlumnoService {
 		return this.repository.create(alu);
 	}
 	
+	public boolean insertsTran() {
+		return this.repository.insertsTran();
+	}
+	
 	public boolean delete(String dni) {
 		return this.repository.delete(dni);
 	}

@@ -183,6 +183,43 @@ public class AlumnoRepository {
 		return actualizado;
 	}
 	
-	
+	public boolean insertsTran() {
+		
+		boolean insertadosTran = false;
+		Connection con = openConnection();
+		
+		String sql1 = "INSERT INTO alumno VALUES ('55555555Q', 'Yeni', 'Gomez', 10)";
+		String sql2 = "INSERT INTO alumno VALUES ('55555555N', 'Luisa', 'Gomez', 26)";
+		String sql3 = "INSERT INTO alumno VALUES ('55555555T', 'Teresa', 'Gomez', 11)";
+		
+		try {
+			//desactivo el autocommit
+			con.setAutoCommit(false);
+			
+			Statement st = con.createStatement();
+			st.executeUpdate(sql1);
+			st.executeUpdate(sql2);
+			st.executeUpdate(sql3);
+			
+			// inserta todo lo pendiente en la BBDD
+			con.commit();
+			insertadosTran = true;
+			
+			
+		} catch (SQLException e) {
+			System.out.println("hubo un problema con un insert " + e.getMessage());
+			try {
+				System.out.println("Se deshacen todos los INSERT");
+				con.rollback();
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		}
+		
+		
+		
+		return insertadosTran;
+	}
 
 }
